@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "PlayStoreGameView"
 include(":app")
+include(":playstore-gameview")
