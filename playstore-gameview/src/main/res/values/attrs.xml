@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GameListView">
+        <attr name="cardType" format="enum">
+            <enum name="big_image" value="0" />
+            <enum name="list" value="1" />
+            <enum name="small_image" value="2" />
+        </attr>
+    </declare-styleable>
+</resources>
