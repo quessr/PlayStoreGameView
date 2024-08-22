@@ -26,4 +26,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bigImageGameListView" />
 
+    <com.quessr.playstore_gameview.GameListView
+        android:id="@+id/listImageGameListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardType="list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/smallImageGameListView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
