@@ -79,10 +79,24 @@ class MainActivity : AppCompatActivity() {
                 "https://play-lh.googleusercontent.com/-REeRpbsL3nQTjoDfRzxvqgdqwtp6Pflbx8P3aqvCQsed5zJabGZ4qYC01G_q-9svn4=s64-rw"
             ), GameListModel.ListCard(
                 "0",
-                "네이버페이",
-                "금융",
-                "3.6",
-                "https://play-lh.googleusercontent.com/-REeRpbsL3nQTjoDfRzxvqgdqwtp6Pflbx8P3aqvCQsed5zJabGZ4qYC01G_q-9svn4=s64-rw"
+                "TikTok Lite  포인트, 쿠폰, 영상",
+                "동영상 플레이어/편집기",
+                "4.7",
+                "https://play-lh.googleusercontent.com/0mrWcoPNYR2CHHbvRlek_cuhoXf4fU26k-Tjdh9-0sUMl2viIvEn5ig8yI04lewvz7pU=s64-rw"
+            ),
+            GameListModel.ListCard(
+                "0",
+                "AliExpress",
+                "쇼핑",
+                "4.5",
+                "https://play-lh.googleusercontent.com/luLha_idSPcj2X1lF0GvIOuf4ODegCSuSDbPBSc2DXxrwaXCLRc5sWDZteSH0I44gmdG=s64-rw"
+            ),
+            GameListModel.ListCard(
+                "0",
+                "ChatGPT",
+                "생산성",
+                "4.8",
+                "https://play-lh.googleusercontent.com/6qi3w4uqKaD1c-CBdkkfO6IL0lH4OoCTEdiX0oYbLFxwfvxu1t8vuwHcagdYSFmFKmI=s64-rw"
             ),
             GameListModel.ListCard(
                 "0",
@@ -90,13 +104,26 @@ class MainActivity : AppCompatActivity() {
                 "금융",
                 "3.6",
                 "https://play-lh.googleusercontent.com/-REeRpbsL3nQTjoDfRzxvqgdqwtp6Pflbx8P3aqvCQsed5zJabGZ4qYC01G_q-9svn4=s64-rw"
+            ), GameListModel.ListCard(
+                "0",
+                "TikTok Lite  포인트, 쿠폰, 영상",
+                "동영상 플레이어/편집기",
+                "4.7",
+                "https://play-lh.googleusercontent.com/0mrWcoPNYR2CHHbvRlek_cuhoXf4fU26k-Tjdh9-0sUMl2viIvEn5ig8yI04lewvz7pU=s64-rw"
             ),
             GameListModel.ListCard(
                 "0",
-                "네이버페이",
-                "금융",
-                "3.6",
-                "https://play-lh.googleusercontent.com/-REeRpbsL3nQTjoDfRzxvqgdqwtp6Pflbx8P3aqvCQsed5zJabGZ4qYC01G_q-9svn4=s64-rw"
+                "AliExpress",
+                "쇼핑",
+                "4.5",
+                "https://play-lh.googleusercontent.com/luLha_idSPcj2X1lF0GvIOuf4ODegCSuSDbPBSc2DXxrwaXCLRc5sWDZteSH0I44gmdG=s64-rw"
+            ),
+            GameListModel.ListCard(
+                "0",
+                "ChatGPT",
+                "생산성",
+                "4.8",
+                "https://play-lh.googleusercontent.com/6qi3w4uqKaD1c-CBdkkfO6IL0lH4OoCTEdiX0oYbLFxwfvxu1t8vuwHcagdYSFmFKmI=s64-rw"
             )
         )
 
