@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">playstore-gameview</string>
+    <string name="install">설치</string>
 </resources>
