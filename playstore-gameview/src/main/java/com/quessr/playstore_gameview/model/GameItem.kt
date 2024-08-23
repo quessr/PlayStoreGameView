@@ -1,28 +1,28 @@
 package com.quessr.playstore_gameview.model
 
-sealed class GameListModel() {
+sealed class GameItem() {
     abstract val id: String
 
-    data class BigImageCard(
+    data class BigImageItem(
         override val id: String,
         val title: String,
         val developer: String,
         val url: String,
         val bannerUrl: String
-    ) : GameListModel()
+    ) : GameItem()
 
-    data class SmallImageCard(
+    data class SmallImageItem(
         override val id: String,
         val title: String,
         val score: String,
         val url: String,
-    ) : GameListModel()
+    ) : GameItem()
 
-    data class ListCard(
+    data class ListItem(
         override val id: String,
         val title: String,
         val category: String,
         val score: String,
         val url: String,
-    ) : GameListModel()
+    ) : GameItem()
 }

@@ -6,12 +6,12 @@ import com.bumptech.glide.Glide
 import com.quessr.playstore_gameview.databinding.LayoutBigImageCardBinding
 import com.quessr.playstore_gameview.databinding.LayoutListCardBinding
 import com.quessr.playstore_gameview.databinding.LayoutSmallImageCardBinding
-import com.quessr.playstore_gameview.model.GameListModel
+import com.quessr.playstore_gameview.model.GameItem
 
 sealed class GameListViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(binding.root) {
     class BigImageCardViewHolder(private val binding: LayoutBigImageCardBinding) :
         GameListViewHolder(binding) {
-        fun bind(game: GameListModel.BigImageCard) {
+        fun bind(game: GameItem.BigImageItem) {
             binding.title.text = game.title
             binding.developer.text = game.developer
 
@@ -27,7 +27,7 @@ sealed class GameListViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
 
     class ListCardViewHolder(private val binding: LayoutListCardBinding) :
         GameListViewHolder(binding) {
-        fun bind(game: GameListModel.ListCard) {
+        fun bind(game: GameItem.ListItem) {
             binding.title.text = game.title
             binding.category.text = game.category
             binding.score.text = game.score
@@ -40,7 +40,7 @@ sealed class GameListViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
 
     class SmallImageCardViewHolder(private val binding: LayoutSmallImageCardBinding) :
         GameListViewHolder(binding) {
-        fun bind(game: GameListModel.SmallImageCard) {
+        fun bind(game: GameItem.SmallImageItem) {
             binding.title.text = game.title
             binding.score.text = game.score
 

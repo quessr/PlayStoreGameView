@@ -7,7 +7,7 @@ import androidx.annotation.AttrRes
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.quessr.playstore_gameview.model.GameListModel
+import com.quessr.playstore_gameview.model.GameItem
 
 class GameListView @JvmOverloads constructor(
     context: Context,
@@ -43,7 +43,7 @@ class GameListView @JvmOverloads constructor(
         applyCustomOptions(cardType)
     }
 
-    fun submitList(games: List<GameListModel>) {
+    fun submitList(games: List<GameItem>) {
         adapter.submitList(games)
     }
 

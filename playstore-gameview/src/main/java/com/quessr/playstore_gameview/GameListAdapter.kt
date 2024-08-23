@@ -4,7 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import com.quessr.playstore_gameview.model.GameListModel
+import com.quessr.playstore_gameview.model.GameItem
 import com.quessr.playstore_gameview.viewholder.GameListViewHolder
 import androidx.recyclerview.widget.ListAdapter
 import com.quessr.playstore_gameview.databinding.LayoutBigImageCardBinding
@@ -12,7 +12,7 @@ import com.quessr.playstore_gameview.databinding.LayoutListCardBinding
 import com.quessr.playstore_gameview.databinding.LayoutSmallImageCardBinding
 
 class GameListAdapter(private val cardType: Int) :
-    ListAdapter<GameListModel, GameListViewHolder>(diffUtil) {
+    ListAdapter<GameItem, GameListViewHolder>(diffUtil) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameListViewHolder {
         Log.d("GameListAdapter", "GameListAdapter")
         return when (cardType) {
@@ -52,9 +52,9 @@ class GameListAdapter(private val cardType: Int) :
 
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
-            is GameListModel.BigImageCard -> 0
-            is GameListModel.ListCard -> 1
-            is GameListModel.SmallImageCard -> 2
+            is GameItem.BigImageItem -> 0
+            is GameItem.ListItem -> 1
+            is GameItem.SmallImageItem -> 2
             else -> throw IllegalArgumentException("Unknown view type")
         }
     }
@@ -65,22 +65,22 @@ class GameListAdapter(private val cardType: Int) :
 
         val game = getItem(position)
         when (holder) {
-            is GameListViewHolder.BigImageCardViewHolder -> holder.bind(game as GameListModel.BigImageCard)
-            is GameListViewHolder.ListCardViewHolder -> holder.bind(game as GameListModel.ListCard)
-            is GameListViewHolder.SmallImageCardViewHolder -> holder.bind(game as GameListModel.SmallImageCard)
+            is GameListViewHolder.BigImageCardViewHolder -> holder.bind(game as GameItem.BigImageItem)
+            is GameListViewHolder.ListCardViewHolder -> holder.bind(game as GameItem.ListItem)
+            is GameListViewHolder.SmallImageCardViewHolder -> holder.bind(game as GameItem.SmallImageItem)
         }
     }
 
     companion object {
-        private val diffUtil = object : DiffUtil.ItemCallback<GameListModel>() {
+        private val diffUtil = object : DiffUtil.ItemCallback<GameItem>() {
             override fun areContentsTheSame(
-                oldItem: GameListModel,
-                newItem: GameListModel
+                oldItem: GameItem,
+                newItem: GameItem
             ): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areItemsTheSame(oldItem: GameListModel, newItem: GameListModel): Boolean {
+            override fun areItemsTheSame(oldItem: GameItem, newItem: GameItem): Boolean {
                 return oldItem == newItem
             }
         }
