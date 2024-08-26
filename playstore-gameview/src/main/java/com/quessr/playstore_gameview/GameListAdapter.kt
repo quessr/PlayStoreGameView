@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.quessr.playstore_gameview.model.GameItem
 import com.quessr.playstore_gameview.viewholder.GameListViewHolder
 import androidx.recyclerview.widget.ListAdapter
+import androidx.viewbinding.ViewBinding
 import com.quessr.playstore_gameview.databinding.LayoutBigImageCardBinding
 import com.quessr.playstore_gameview.databinding.LayoutListCardBinding
 import com.quessr.playstore_gameview.databinding.LayoutSmallImageCardBinding
@@ -15,63 +16,54 @@ class GameListAdapter(private val cardType: Int) :
     ListAdapter<GameItem, GameListViewHolder>(diffUtil) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameListViewHolder {
         Log.d("GameListAdapter", "GameListAdapter")
+        val context = parent.context
+
+        fun <VB : ViewBinding> inflateBinding(bindingInflate: (LayoutInflater, ViewGroup, Boolean) -> VB) =
+            bindingInflate.invoke(LayoutInflater.from(context), parent, false)
+
         return when (cardType) {
-            0 -> GameListViewHolder.BigImageCardViewHolder(
-                LayoutBigImageCardBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                )
-            )
+            ITEM_BIG_IMAGE_CARD -> {
+                val binding = inflateBinding(LayoutBigImageCardBinding::inflate)
+                GameListViewHolder.BigImageCardViewHolder(binding)
+            }
 
-            1 -> GameListViewHolder.ListCardViewHolder(
-                LayoutListCardBinding.inflate(
-                    LayoutInflater.from(
-                        parent.context
-                    ), parent, false
-                )
-            )
+            ITEM_LIST_CARD -> {
+                val binding = inflateBinding(LayoutListCardBinding::inflate)
+                GameListViewHolder.ListCardViewHolder(binding)
+            }
 
-            2 -> GameListViewHolder.SmallImageCardViewHolder(
-                LayoutSmallImageCardBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                )
-            )
+            ITEM_SMALL_IMAGE_CARD -> {
+                val binding = inflateBinding(LayoutSmallImageCardBinding::inflate)
+                GameListViewHolder.SmallImageCardViewHolder(binding)
+            }
 
-            else -> GameListViewHolder.BigImageCardViewHolder(
-                LayoutBigImageCardBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                )
-            )
+            else -> {
+                Log.d("GameListAdapter","onCreateViewHolder else")
+                val binding = inflateBinding(LayoutBigImageCardBinding::inflate)
+                GameListViewHolder.BigImageCardViewHolder(binding)
+            }
         }
     }
 
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
-            is GameItem.BigImageItem -> 0
-            is GameItem.ListItem -> 1
-            is GameItem.SmallImageItem -> 2
+            is GameItem.BigImageItem -> ITEM_BIG_IMAGE_CARD
+            is GameItem.ListItem -> ITEM_LIST_CARD
+            is GameItem.SmallImageItem -> ITEM_SMALL_IMAGE_CARD
             else -> throw IllegalArgumentException("Unknown view type")
         }
     }
 
     override fun onBindViewHolder(holder: GameListViewHolder, position: Int) {
-
-        Log.d("GameListAdapter", "onBindViewHolder")
-
-        val game = getItem(position)
-        when (holder) {
-            is GameListViewHolder.BigImageCardViewHolder -> holder.bind(game as GameItem.BigImageItem)
-            is GameListViewHolder.ListCardViewHolder -> holder.bind(game as GameItem.ListItem)
-            is GameListViewHolder.SmallImageCardViewHolder -> holder.bind(game as GameItem.SmallImageItem)
-        }
+        val item = getItem(position)
+        holder.onBind(item)
     }
 
     companion object {
+        private const val ITEM_BIG_IMAGE_CARD = 0
+        private const val ITEM_LIST_CARD = 1
+        private const val ITEM_SMALL_IMAGE_CARD = 2
+
         private val diffUtil = object : DiffUtil.ItemCallback<GameItem>() {
             override fun areContentsTheSame(
                 oldItem: GameItem,
