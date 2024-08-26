@@ -9,43 +9,59 @@ import com.quessr.playstore_gameview.databinding.LayoutSmallImageCardBinding
 import com.quessr.playstore_gameview.model.GameItem
 
 sealed class GameListViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    open fun onBind(gameItem: GameItem) {}
     class BigImageCardViewHolder(private val binding: LayoutBigImageCardBinding) :
         GameListViewHolder(binding) {
-        fun bind(game: GameItem.BigImageItem) {
-            binding.title.text = game.title
-            binding.developer.text = game.developer
+        private var gameModel: GameItem.BigImageItem? = null
+        override fun onBind(gameItem: GameItem) {
+            gameModel = gameItem as? GameItem.BigImageItem
+            with(binding) {
+                title.text = gameModel?.title
+                developer.text = gameModel?.developer
+            }
 
             Glide.with(binding.imageView.context)
-                .load(game.url)
+                .load(gameModel?.url)
                 .into(binding.imageView)
 
             Glide.with(binding.ivBanner.context)
-                .load(game.bannerUrl)
+                .load(gameModel?.bannerUrl)
                 .into(binding.ivBanner)
         }
     }
 
     class ListCardViewHolder(private val binding: LayoutListCardBinding) :
         GameListViewHolder(binding) {
-        fun bind(game: GameItem.ListItem) {
-            binding.title.text = game.title
-            binding.category.text = game.category
-            binding.score.text = game.score
+        private var gameModel: GameItem.ListItem? = null
+
+        override fun onBind(gameItem: GameItem) {
+            gameModel = gameItem as? GameItem.ListItem
+            with(binding) {
+                title.text = gameModel?.title
+                category.text = gameModel?.category
+                score.text = gameModel?.score
+            }
 
             Glide.with(binding.imageView.context)
-                .load(game.url)
+                .load(gameModel?.url)
                 .into(binding.imageView)
         }
     }
 
     class SmallImageCardViewHolder(private val binding: LayoutSmallImageCardBinding) :
         GameListViewHolder(binding) {
-        fun bind(game: GameItem.SmallImageItem) {
-            binding.title.text = game.title
-            binding.score.text = game.score
+
+        private var gameModel: GameItem.SmallImageItem? = null
+        override fun onBind(gameItem: GameItem) {
+            gameModel = gameItem as? GameItem.SmallImageItem
+            with(binding) {
+                title.text = gameModel?.title
+                score.text = gameModel?.score
+            }
 
             Glide.with(binding.imageView.context)
-                .load(game.url)
+                .load(gameModel?.url)
                 .into(binding.imageView)
         }
     }
