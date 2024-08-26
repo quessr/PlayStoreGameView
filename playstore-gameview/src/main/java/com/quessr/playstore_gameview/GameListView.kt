@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import androidx.annotation.AttrRes
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.quessr.playstore_gameview.model.GameItem
 
@@ -41,6 +42,7 @@ class GameListView @JvmOverloads constructor(
         }
         addView(recyclerView)
         applyCustomOptions(cardType)
+        PagerSnapHelper().attachToRecyclerView(recyclerView)
     }
 
     fun submitList(games: List<GameItem>) {
