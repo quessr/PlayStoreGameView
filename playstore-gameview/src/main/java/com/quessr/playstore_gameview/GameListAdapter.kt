@@ -1,5 +1,6 @@
 package com.quessr.playstore_gameview
 
+import android.provider.SyncStateContract.Constants
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import com.quessr.playstore_gameview.model.GameItem
 import com.quessr.playstore_gameview.viewholder.GameListViewHolder
 import androidx.recyclerview.widget.ListAdapter
 import androidx.viewbinding.ViewBinding
+import com.quessr.playstore_gameview.common.constants.GameItemConstants
 import com.quessr.playstore_gameview.databinding.LayoutBigImageCardBinding
 import com.quessr.playstore_gameview.databinding.LayoutListCardBinding
 import com.quessr.playstore_gameview.databinding.LayoutSmallImageCardBinding
@@ -22,17 +24,17 @@ class GameListAdapter(private val cardType: Int) :
             bindingInflate.invoke(LayoutInflater.from(context), parent, false)
 
         return when (cardType) {
-            ITEM_BIG_IMAGE_CARD -> {
+            GameItemConstants.ITEM_BIG_IMAGE_CARD -> {
                 val binding = inflateBinding(LayoutBigImageCardBinding::inflate)
                 GameListViewHolder.BigImageCardViewHolder(binding)
             }
 
-            ITEM_LIST_CARD -> {
+            GameItemConstants.ITEM_LIST_CARD -> {
                 val binding = inflateBinding(LayoutListCardBinding::inflate)
                 GameListViewHolder.ListCardViewHolder(binding)
             }
 
-            ITEM_SMALL_IMAGE_CARD -> {
+            GameItemConstants.ITEM_SMALL_IMAGE_CARD -> {
                 val binding = inflateBinding(LayoutSmallImageCardBinding::inflate)
                 GameListViewHolder.SmallImageCardViewHolder(binding)
             }
@@ -47,9 +49,9 @@ class GameListAdapter(private val cardType: Int) :
 
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
-            is GameItem.BigImageItem -> ITEM_BIG_IMAGE_CARD
-            is GameItem.ListItem -> ITEM_LIST_CARD
-            is GameItem.SmallImageItem -> ITEM_SMALL_IMAGE_CARD
+            is GameItem.BigImageItem -> GameItemConstants.ITEM_BIG_IMAGE_CARD
+            is GameItem.ListItem -> GameItemConstants.ITEM_LIST_CARD
+            is GameItem.SmallImageItem -> GameItemConstants.ITEM_SMALL_IMAGE_CARD
             else -> throw IllegalArgumentException("Unknown view type")
         }
     }
@@ -60,10 +62,6 @@ class GameListAdapter(private val cardType: Int) :
     }
 
     companion object {
-        private const val ITEM_BIG_IMAGE_CARD = 0
-        private const val ITEM_LIST_CARD = 1
-        private const val ITEM_SMALL_IMAGE_CARD = 2
-
         private val diffUtil = object : DiffUtil.ItemCallback<GameItem>() {
             override fun areContentsTheSame(
                 oldItem: GameItem,

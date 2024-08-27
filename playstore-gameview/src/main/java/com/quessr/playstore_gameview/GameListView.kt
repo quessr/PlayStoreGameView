@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.quessr.playstore_gameview.common.constants.GameItemConstants
 import com.quessr.playstore_gameview.model.GameItem
 
 class GameListView @JvmOverloads constructor(
@@ -51,11 +52,11 @@ class GameListView @JvmOverloads constructor(
 
     private fun applyCustomOptions(type: Int) {
         when (type) {
-            0 -> {
+            GameItemConstants.ITEM_BIG_IMAGE_CARD -> {
                 //TODO BigImageCard 옵션 적용
             }
 
-            1 -> {
+            GameItemConstants.ITEM_LIST_CARD -> {
                 //TODO ListCard 옵션 적용
 
                 // ListCard 옵션 적용 - 가로로 여러 줄을 생성
@@ -63,7 +64,7 @@ class GameListView @JvmOverloads constructor(
                     GridLayoutManager(context, spanCount, GridLayoutManager.HORIZONTAL, false)
             }
 
-            2 -> {
+            GameItemConstants.ITEM_SMALL_IMAGE_CARD -> {
                 //TODO SmallImageCard 옵션 적용
             }
         }
