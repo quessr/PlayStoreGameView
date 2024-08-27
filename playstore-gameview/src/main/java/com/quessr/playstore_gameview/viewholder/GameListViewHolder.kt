@@ -1,8 +1,11 @@
 package com.quessr.playstore_gameview.viewholder
 
+import android.util.Log
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
+import com.quessr.playstore_gameview.common.constants.ImageSizeConstants
 import com.quessr.playstore_gameview.databinding.LayoutBigImageCardBinding
 import com.quessr.playstore_gameview.databinding.LayoutListCardBinding
 import com.quessr.playstore_gameview.databinding.LayoutSmallImageCardBinding
@@ -33,6 +36,11 @@ sealed class GameListViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
         fun setImageViewSize(size: Int) {
             binding.imageView.layoutParams.width = size
             binding.imageView.layoutParams.height = size
+        }
+
+        fun setButtonVisibility(size: Int) {
+            Log.d("GameListAdapter", "setButtonVisibility called with size: $size")
+            binding.btnInstall.isVisible = size == ImageSizeConstants.SIZE_SMALL
         }
     }
 

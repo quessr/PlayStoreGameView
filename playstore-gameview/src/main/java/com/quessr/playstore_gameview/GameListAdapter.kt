@@ -1,5 +1,6 @@
 package com.quessr.playstore_gameview
 
+import android.content.Context
 import android.provider.SyncStateContract.Constants
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,17 +11,19 @@ import com.quessr.playstore_gameview.viewholder.GameListViewHolder
 import androidx.recyclerview.widget.ListAdapter
 import androidx.viewbinding.ViewBinding
 import com.quessr.playstore_gameview.common.constants.GameItemConstants
+import com.quessr.playstore_gameview.common.constants.ImageSizeConstants
 import com.quessr.playstore_gameview.databinding.LayoutBigImageCardBinding
 import com.quessr.playstore_gameview.databinding.LayoutListCardBinding
 import com.quessr.playstore_gameview.databinding.LayoutSmallImageCardBinding
 
-class GameListAdapter(private val cardType: Int) :
+class GameListAdapter(private val context: Context, private val cardType: Int) :
     ListAdapter<GameItem, GameListViewHolder>(diffUtil) {
-    private var imageViewSize: Int = 0
-    fun setImageViewSize(size: Int) {
-        imageViewSize = size
-        notifyDataSetChanged()
+    private var sizeType: Int = 0
+
+    fun setSizeType(size: Int) {
+        sizeType = size
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameListViewHolder {
         Log.d("GameListAdapter", "GameListAdapter")
@@ -66,10 +69,13 @@ class GameListAdapter(private val cardType: Int) :
         val item = getItem(position)
         holder.onBind(item)
 
-        if (imageViewSize > 0) {
-            if (holder is GameListViewHolder.BigImageCardViewHolder) {
-                    holder.setImageViewSize(imageViewSize)
-            }
+        if (holder is GameListViewHolder.BigImageCardViewHolder) {
+            holder.setImageViewSize(
+                if (sizeType == ImageSizeConstants.SIZE_SMALL) context.resources.getDimensionPixelSize(
+                    R.dimen.small_image_size
+                ) else context.resources.getDimensionPixelSize(R.dimen.big_image_size)
+            )
+            holder.setButtonVisibility(sizeType)
         }
     }
 
