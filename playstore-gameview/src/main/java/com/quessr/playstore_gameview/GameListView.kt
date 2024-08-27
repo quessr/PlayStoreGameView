@@ -18,6 +18,7 @@ class GameListView @JvmOverloads constructor(
 ) : LinearLayout(context, attr, defStyleAttr) {
     private var cardType: Int = 0
     private var spanCount: Int = 3
+    private var imageViewSize: Int = 0
 
     private val adapter: GameListAdapter by lazy {
         GameListAdapter(cardType)
@@ -34,6 +35,14 @@ class GameListView @JvmOverloads constructor(
         context.theme.obtainStyledAttributes(attr, R.styleable.GameListView, 0, 0).apply {
             try {
                 cardType = getInt(R.styleable.GameListView_cardType, 0)
+                val imageSizeType = getInt(R.styleable.GameListView_imageViewSize, SIZE_SMALL)
+
+                imageViewSize = when (imageSizeType) {
+                    SIZE_SMALL -> context.resources.getDimensionPixelSize(R.dimen.small_image_size)
+                    SIZE_BIG -> context.resources.getDimensionPixelSize(R.dimen.big_image_size)
+                    else -> context.resources.getDimensionPixelSize(R.dimen.small_image_size)
+                }
+
                 if (cardType == 1) {
                     spanCount = getInt(R.styleable.GameListView_spanCount, 3)
                 }
@@ -54,6 +63,7 @@ class GameListView @JvmOverloads constructor(
         when (type) {
             GameItemConstants.ITEM_BIG_IMAGE_CARD -> {
                 //TODO BigImageCard 옵션 적용
+                adapter.setImageViewSize(imageViewSize)
             }
 
             GameItemConstants.ITEM_LIST_CARD -> {
@@ -68,5 +78,10 @@ class GameListView @JvmOverloads constructor(
                 //TODO SmallImageCard 옵션 적용
             }
         }
+    }
+
+    companion object {
+        const val SIZE_SMALL = 0
+        const val SIZE_BIG = 1
     }
 }

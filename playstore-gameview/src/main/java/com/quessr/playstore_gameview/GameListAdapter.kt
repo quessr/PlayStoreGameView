@@ -16,6 +16,12 @@ import com.quessr.playstore_gameview.databinding.LayoutSmallImageCardBinding
 
 class GameListAdapter(private val cardType: Int) :
     ListAdapter<GameItem, GameListViewHolder>(diffUtil) {
+    private var imageViewSize: Int = 0
+    fun setImageViewSize(size: Int) {
+        imageViewSize = size
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameListViewHolder {
         Log.d("GameListAdapter", "GameListAdapter")
         val context = parent.context
@@ -40,7 +46,7 @@ class GameListAdapter(private val cardType: Int) :
             }
 
             else -> {
-                Log.d("GameListAdapter","onCreateViewHolder else")
+                Log.d("GameListAdapter", "onCreateViewHolder else")
                 val binding = inflateBinding(LayoutBigImageCardBinding::inflate)
                 GameListViewHolder.BigImageCardViewHolder(binding)
             }
@@ -59,6 +65,12 @@ class GameListAdapter(private val cardType: Int) :
     override fun onBindViewHolder(holder: GameListViewHolder, position: Int) {
         val item = getItem(position)
         holder.onBind(item)
+
+        if (imageViewSize > 0) {
+            if (holder is GameListViewHolder.BigImageCardViewHolder) {
+                    holder.setImageViewSize(imageViewSize)
+            }
+        }
     }
 
     companion object {

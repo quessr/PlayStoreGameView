@@ -29,6 +29,11 @@ sealed class GameListViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
                 .load(gameModel?.bannerUrl)
                 .into(binding.ivBanner)
         }
+
+        fun setImageViewSize(size: Int) {
+            binding.imageView.layoutParams.width = size
+            binding.imageView.layoutParams.height = size
+        }
     }
 
     class ListCardViewHolder(private val binding: LayoutListCardBinding) :
