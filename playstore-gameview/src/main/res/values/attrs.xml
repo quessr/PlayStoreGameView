@@ -10,8 +10,8 @@
         <attr name="spanCount" format="integer" />
         <!--BigImageCard 옵션-->
         <attr name="imageViewSize" format="enum">
-            <enum name="small" value="0" />
-            <enum name="big" value="1" />
+            <enum name="small" value="1" />
+            <enum name="big" value="2" />
         </attr>
     </declare-styleable>
 </resources>
