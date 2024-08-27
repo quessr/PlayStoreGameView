@@ -6,7 +6,12 @@
             <enum name="list" value="1" />
             <enum name="small_image" value="2" />
         </attr>
-        <!-- ListCard 타입일 때만 적용되는 spanCount 속성 -->
+        <!-- ListCard 옵션-->
         <attr name="spanCount" format="integer" />
+        <!--BigImageCard 옵션-->
+        <attr name="imageViewSize" format="enum">
+            <enum name="small" value="0" />
+            <enum name="big" value="1" />
+        </attr>
     </declare-styleable>
 </resources>
