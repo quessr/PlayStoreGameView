@@ -1,7 +1,10 @@
 package com.quessr.playstore_gameview.viewholder
 
 import android.util.Log
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.core.view.marginTop
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
@@ -20,6 +23,7 @@ sealed class GameListViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
         override fun onBind(gameItem: GameItem) {
             gameModel = gameItem as? GameItem.BigImageItem
             with(binding) {
+                tvCategoryTitle.text = gameModel?.categoryTitle
                 title.text = gameModel?.title
                 developer.text = gameModel?.developer
             }
@@ -41,6 +45,18 @@ sealed class GameListViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
         fun setButtonVisibility(size: Int) {
             Log.d("GameListAdapter", "setButtonVisibility called with size: $size")
             binding.btnInstall.isVisible = size == ImageSizeConstants.SIZE_SMALL
+        }
+
+        fun setTitleVisibility(visibility: Int) {
+            Log.d("GameListAdapter", "visibility: $visibility")
+            if (visibility == TITLE_VISIBLE) binding.tvCategoryTitle.isVisible else {
+                binding.tvCategoryTitle.isVisible = false
+                // MarginTop을 0으로 설정
+                val params = binding.cardView.layoutParams as ViewGroup.MarginLayoutParams
+                params.topMargin = 0
+                binding.cardView.layoutParams = params
+            }
+
         }
     }
 
@@ -77,5 +93,10 @@ sealed class GameListViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
                 .load(gameModel?.url)
                 .into(binding.imageView)
         }
+    }
+
+    companion object {
+        private var TITLE_VISIBLE = 1
+        private var TITLE_GONE = 2
     }
 }

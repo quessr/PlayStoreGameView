@@ -48,7 +48,8 @@ class MainActivity : AppCompatActivity() {
                     title = "게임 $index",
                     developer = "개발자 $index",
                     url = bigImageUrls[index % bigImageUrls.size],  // URL 리스트에서 반복적으로 가져옴
-                    bannerUrl = bigImageUrls[(index + 1) % bigImageUrls.size]
+                    bannerUrl = bigImageUrls[(index + 1) % bigImageUrls.size],
+                    categoryTitle = "멀티플레이어 게임"
                 )
             )
 

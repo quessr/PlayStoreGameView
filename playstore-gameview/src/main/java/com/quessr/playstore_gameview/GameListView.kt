@@ -2,6 +2,7 @@ package com.quessr.playstore_gameview
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
 import android.widget.LinearLayout
 import androidx.annotation.AttrRes
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,6 +21,7 @@ class GameListView @JvmOverloads constructor(
     private var cardType: Int = 0
     private var spanCount: Int = 3
     private var sizeType: Int = ImageSizeConstants.SIZE_SMALL
+    private var titleVisibility: Int = View.GONE
 
     private val adapter: GameListAdapter by lazy {
         GameListAdapter(context, cardType)
@@ -38,6 +40,7 @@ class GameListView @JvmOverloads constructor(
                 cardType = getInt(R.styleable.GameListView_cardType, 0)
                 sizeType =
                     getInt(R.styleable.GameListView_imageViewSize, ImageSizeConstants.SIZE_SMALL)
+                titleVisibility = getInt(R.styleable.GameListView_categoryTitleVisibility, View.GONE)
 
                 if (cardType == 1) {
                     spanCount = getInt(R.styleable.GameListView_spanCount, 3)
@@ -60,6 +63,7 @@ class GameListView @JvmOverloads constructor(
             GameItemConstants.ITEM_BIG_IMAGE_CARD -> {
                 //TODO BigImageCard 옵션 적용
                 adapter.setSizeType(sizeType)
+                adapter.setCategoryTitleVisibilityType(titleVisibility)
             }
 
             GameItemConstants.ITEM_LIST_CARD -> {

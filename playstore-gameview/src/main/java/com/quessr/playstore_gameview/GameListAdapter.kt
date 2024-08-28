@@ -1,9 +1,9 @@
 package com.quessr.playstore_gameview
 
 import android.content.Context
-import android.provider.SyncStateContract.Constants
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.quessr.playstore_gameview.model.GameItem
@@ -19,11 +19,15 @@ import com.quessr.playstore_gameview.databinding.LayoutSmallImageCardBinding
 class GameListAdapter(private val context: Context, private val cardType: Int) :
     ListAdapter<GameItem, GameListViewHolder>(diffUtil) {
     private var sizeType: Int = 0
+    private var categoryTitleVisibilityType: Int = View.GONE
 
     fun setSizeType(size: Int) {
         sizeType = size
     }
 
+    fun setCategoryTitleVisibilityType(visibility: Int) {
+        categoryTitleVisibilityType = visibility
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameListViewHolder {
         Log.d("GameListAdapter", "GameListAdapter")
@@ -76,6 +80,7 @@ class GameListAdapter(private val context: Context, private val cardType: Int) :
                 ) else context.resources.getDimensionPixelSize(R.dimen.big_image_size)
             )
             holder.setButtonVisibility(sizeType)
+            holder.setTitleVisibility(categoryTitleVisibilityType)
         }
     }
 
