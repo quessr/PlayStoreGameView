@@ -5,6 +5,7 @@ sealed class GameItem() {
 
     data class BigImageItem(
         override val id: String,
+        val categoryTitle: String? = null,
         val title: String,
         val developer: String,
         val url: String,

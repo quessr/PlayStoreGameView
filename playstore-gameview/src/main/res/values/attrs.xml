@@ -13,5 +13,9 @@
             <enum name="small" value="1" />
             <enum name="big" value="2" />
         </attr>
+        <attr name="categoryTitleVisibility" format="enum">
+            <enum name="visible" value="1" />
+            <enum name="gone" value="2" />
+        </attr>
     </declare-styleable>
 </resources>
