@@ -53,6 +53,9 @@ dependencies {
 
     // gson
     implementation("com.google.code.gson:gson:2.11.0")
+
+    // fragment
+    implementation("androidx.fragment:fragment-ktx:1.8.2")
 }
 
 
