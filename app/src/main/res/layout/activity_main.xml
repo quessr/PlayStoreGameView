@@ -7,15 +7,35 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.quessr.playstore_gameview.GameListView
-        android:id="@+id/bigImageGameListView"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardType="big_image"
-        app:categoryTitleVisibility="visible"
-        app:imageViewSize="big"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    <com.quessr.playstore_gameview.GameListView-->
+    <!--        android:id="@+id/bigImageGameListView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:cardType="big_image"-->
+    <!--        app:categoryTitleVisibility="gone"-->
+    <!--        app:imageViewSize="small"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--    <com.quessr.playstore_gameview.GameListView-->
+    <!--        android:id="@+id/bigImageGameListView2"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        app:cardType="big_image"-->
+    <!--        app:categoryTitleVisibility="visible"-->
+    <!--        app:imageViewSize="big"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/bigImageGameListView" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
