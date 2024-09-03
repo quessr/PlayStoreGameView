@@ -5,11 +5,12 @@ sealed class GameItem() {
 
     data class BigImageItem(
         override val id: String,
-        val categoryTitle: String? = null,
         val title: String,
-        val developer: String,
+        val developer: String? = null,
+        val category: String? = null,
+        val score: String? = null,
         val url: String,
-        val bannerUrl: String
+        val bannerUrl: String?
     ) : GameItem()
 
     data class SmallImageItem(

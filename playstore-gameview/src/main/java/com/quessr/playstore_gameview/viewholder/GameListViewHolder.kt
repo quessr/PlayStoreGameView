@@ -23,7 +23,6 @@ sealed class GameListViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
         override fun onBind(gameItem: GameItem) {
             gameModel = gameItem as? GameItem.BigImageItem
             with(binding) {
-                tvCategoryTitle.text = gameModel?.categoryTitle
                 title.text = gameModel?.title
                 developer.text = gameModel?.developer
             }
