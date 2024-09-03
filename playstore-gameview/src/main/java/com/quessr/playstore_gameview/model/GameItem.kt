@@ -3,14 +3,21 @@ package com.quessr.playstore_gameview.model
 sealed class GameItem() {
     abstract val id: String
 
-    data class BigImageItem(
+    data class BigImagePromoItem(
         override val id: String,
         val title: String,
         val developer: String? = null,
         val category: String? = null,
-        val score: String? = null,
         val url: String,
         val bannerUrl: String?
+    ) : GameItem()
+
+    data class BigImageFeaturedItem(
+        override val id: String,
+        val title: String,
+        val category: String? = null,
+        val score: String? = null,
+        val url: String,
     ) : GameItem()
 
     data class SmallImageItem(

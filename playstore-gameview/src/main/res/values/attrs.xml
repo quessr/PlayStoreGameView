@@ -2,9 +2,10 @@
 <resources>
     <declare-styleable name="GameListView">
         <attr name="cardType" format="enum">
-            <enum name="big_image" value="0" />
+            <enum name="big_promo_image" value="0" />
             <enum name="list" value="1" />
             <enum name="small_image" value="2" />
+            <enum name="big_featured_image" value="3" />
         </attr>
         <!-- ListCard 옵션-->
         <attr name="spanCount" format="integer" />

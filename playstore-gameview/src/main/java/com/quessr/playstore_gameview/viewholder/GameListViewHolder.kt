@@ -1,15 +1,14 @@
 package com.quessr.playstore_gameview.viewholder
 
 import android.util.Log
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.core.view.marginTop
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
 import com.quessr.playstore_gameview.common.constants.ImageSizeConstants
-import com.quessr.playstore_gameview.databinding.LayoutBigImageCardBinding
+import com.quessr.playstore_gameview.databinding.LayoutBigImageFeaturedCardBinding
+import com.quessr.playstore_gameview.databinding.LayoutBigImagePromoCardBinding
 import com.quessr.playstore_gameview.databinding.LayoutListCardBinding
 import com.quessr.playstore_gameview.databinding.LayoutSmallImageCardBinding
 import com.quessr.playstore_gameview.model.GameItem
@@ -17,11 +16,11 @@ import com.quessr.playstore_gameview.model.GameItem
 sealed class GameListViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
     open fun onBind(gameItem: GameItem) {}
-    class BigImageCardViewHolder(private val binding: LayoutBigImageCardBinding) :
+    class BigImagePromoCardViewHolder(private val binding: LayoutBigImagePromoCardBinding) :
         GameListViewHolder(binding) {
-        private var gameModel: GameItem.BigImageItem? = null
+        private var gameModel: GameItem.BigImagePromoItem? = null
         override fun onBind(gameItem: GameItem) {
-            gameModel = gameItem as? GameItem.BigImageItem
+            gameModel = gameItem as? GameItem.BigImagePromoItem
             with(binding) {
                 title.text = gameModel?.title
                 developer.text = gameModel?.developer
@@ -56,6 +55,24 @@ sealed class GameListViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
                 binding.cardView.layoutParams = params
             }
 
+        }
+    }
+
+    class BigImageFeaturedCardViewHolder(private val binding: LayoutBigImageFeaturedCardBinding) :
+        GameListViewHolder(binding) {
+        private var gameModel: GameItem.BigImageFeaturedItem? = null
+
+        override fun onBind(gameItem: GameItem) {
+            gameModel = gameItem as? GameItem.BigImageFeaturedItem
+            with(binding) {
+                title.text = gameModel?.title
+                category.text = gameModel?.category
+                score.text = gameModel?.score
+            }
+
+            Glide.with(binding.imageView.context)
+                .load(gameModel?.url)
+                .into(binding.imageView)
         }
     }
 

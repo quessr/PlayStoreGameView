@@ -4,4 +4,5 @@ object GameItemConstants {
     const val ITEM_BIG_IMAGE_CARD = 0
     const val ITEM_LIST_CARD = 1
     const val ITEM_SMALL_IMAGE_CARD = 2
+    const val ITEM_BIG_IMAGE_FEATURED_CARD = 3
 }

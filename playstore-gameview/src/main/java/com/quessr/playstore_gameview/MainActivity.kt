@@ -37,13 +37,13 @@ class MainActivity : AppCompatActivity() {
             "https://play-lh.googleusercontent.com/Q71eI_PcSsab6iJId24DRUHMzdIKnJWmxZSHEsC6paFFMfZZmju-XRGI8aE2-h6ytWI=s64-rw"
         )
 
-        val bigImageGameList = mutableListOf<GameItem.BigImageItem>()
+        val bigImageGameList = mutableListOf<GameItem.BigImagePromoItem>()
         val smallImageGameList = mutableListOf<GameItem.SmallImageItem>()
         val listImageGameList = mutableListOf<GameItem.ListItem>()
 
         repeat(30) { index ->
             bigImageGameList.add(
-                GameItem.BigImageItem(
+                GameItem.BigImagePromoItem(
                     id = "$index",
                     title = "게임 $index",
                     developer = "개발자 $index",

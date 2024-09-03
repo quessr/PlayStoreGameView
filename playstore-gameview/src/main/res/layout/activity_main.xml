@@ -11,7 +11,7 @@
         android:id="@+id/bigImageGameListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardType="big_image"
+        app:cardType="big_promo_image"
         app:categoryTitleVisibility="visible"
         app:imageViewSize="big"
         app:layout_constraintBottom_toTopOf="@id/smallImageGameListView"
