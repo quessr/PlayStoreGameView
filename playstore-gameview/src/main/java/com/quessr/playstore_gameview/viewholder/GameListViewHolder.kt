@@ -26,13 +26,13 @@ sealed class GameListViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
                 developer.text = gameModel?.developer
             }
 
-            Glide.with(binding.imageView.context)
-                .load(gameModel?.url)
-                .into(binding.imageView)
-
             Glide.with(binding.ivBanner.context)
                 .load(gameModel?.bannerUrl)
                 .into(binding.ivBanner)
+
+            Glide.with(binding.imageView.context)
+                .load(gameModel?.url)
+                .into(binding.imageView)
         }
 
         fun setImageViewSize(size: Int) {
@@ -64,11 +64,17 @@ sealed class GameListViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
 
         override fun onBind(gameItem: GameItem) {
             gameModel = gameItem as? GameItem.BigImageFeaturedItem
+            Log.d("GameListAdapter", "BigImageFeaturedCardViewHolder")
+
             with(binding) {
                 title.text = gameModel?.title
-                category.text = gameModel?.category
+                category.text = gameModel?.category.toString()
                 score.text = gameModel?.score
             }
+
+            Glide.with(binding.ivBanner.context)
+                .load(gameModel?.url)
+                .into(binding.ivBanner)
 
             Glide.with(binding.imageView.context)
                 .load(gameModel?.url)
