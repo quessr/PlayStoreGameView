@@ -15,11 +15,6 @@ class GameFeaturedViewHolder(
     override fun onBind(model: GameListItem) {
        val featured = model as? GameListItem.Featured
 
-//        val bigImageFeaturedGameList = viewModel.combinedGameList.value ?: featured?.items
-//        if (bigImageFeaturedGameList != null) {
-//            binding.bigImageFeaturedGameListView.submitList(bigImageFeaturedGameList)
-//        }
-
         val bigImageFeaturedGameList: List<GameItem> = viewModel.gameListItem.value
             ?.filterIsInstance<GameListItem.Featured>()
             ?.flatMap { gameItemMapper(it) }
