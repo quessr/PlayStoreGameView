@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.gson.Gson
-import com.quessr.playstore_gameview.GameListView
 import com.quessr.playstore_gameview.model.GameItem
-import com.quessr.playstoregameview.R
 import com.quessr.playstoregameview.data.datasource.response.GameResponse
+import com.quessr.playstoregameview.data.model.GameListItem
 import com.quessr.playstoregameview.databinding.FragmentGameListBinding
 
 class GameListFragment : Fragment() {
@@ -37,30 +36,158 @@ class GameListFragment : Fragment() {
         gameListAdapter = GameListAdapter(viewModel)
         binding.rvGameList.adapter = gameListAdapter
 
-        val jsonReader = requireActivity().assets.open("googleplay_game_action_30.json").reader()
-        val jsonString = jsonReader.readText()
-        jsonReader.close()
+        initViewModel()
+        setupData()
 
-        val gameResponse = Gson().fromJson(jsonString, GameResponse::class.java)
-        Log.d("GameListFragment", "menu : $gameResponse")
+//        val jsonReader = requireActivity().assets.open("googleplay_game_action_30.json").reader()
+//        val jsonString = jsonReader.readText()
+//        jsonReader.close()
+//
+//        val gameResponse = Gson().fromJson(jsonString, GameResponse::class.java)
+//        Log.d("GameListFragment", "menu : $gameResponse")
+//
+//        val bigImagePromoGameList = mutableListOf<GameItem.BigImagePromoItem>()
+//        val bigImageFeaturedGameList = mutableListOf<GameItem.BigImageFeaturedItem>()
+//
+//        gameResponse.content.forEachIndexed { index, gameItem ->
+//            bigImagePromoGameList.add(
+//                GameItem.BigImagePromoItem(
+//                    id = gameItem.id.toString(),
+//                    title = gameItem.title,
+//                    developer = gameItem.developer,
+//                    url = gameItem.url,
+//                    bannerUrl = gameItem.url,
+//                )
+//            )
+//        }
 
-        val bigImageGameList = mutableListOf<GameItem.BigImageItem>()
+//        val bigImagePromoGameList =
+//            loadGameItemsFromAsset("googleplay_game_action_30.json") { gameItem ->
+//                GameItem.BigImagePromoItem(
+//                    id = gameItem.id.toString(),
+//                    title = gameItem.title,
+//                    developer = gameItem.developer,
+//                    url = gameItem.url,
+//                    bannerUrl = gameItem.url
+//                )
+//            }
+//
+//        val bigImageFeaturedGameList =
+//            loadGameItemsFromAsset("googleplay_game_adventure_30.json") { gameItem ->
+//                GameItem.BigImageFeaturedItem(
+//                    id = gameItem.id.toString(),
+//                    title = gameItem.title,
+//                    category = gameItem.category,
+//                    score = gameItem.score,
+//                    url = gameItem.url,
+//                    bannerUrl = gameItem.url
+//                )
+//            }
+//
+////        val promoMappedList = bigImagePromoGameList.map { gameListMapper(it) }
+////        val featuredMappedList = bigImageFeaturedGameList.map { gameListMapper(it) }
+//        val promoMappedList = listOf(
+//            GameListItem.Promo(
+//                id = "promo_section",
+//                items = bigImagePromoGameList
+//            )
+//        )
+//
+//        val featuredMappedList = listOf(
+//            GameListItem.Featured(
+//                id = "featured_section",
+//                items = bigImageFeaturedGameList
+//            )
+//        )
+//
+//        val combinedList = promoMappedList + featuredMappedList
+//
+//        viewModel.setCombinedGameList(combinedList)
+//
+//        viewModel.combinedGameList.observe(viewLifecycleOwner) { gameListItems ->
+//            gameListAdapter.submitList(gameListItems)
+//        }
 
-        gameResponse.content.forEachIndexed { index, gameItem ->
-            bigImageGameList.add(
-                GameItem.BigImageItem(
+
+    }
+
+    private fun initViewModel() {
+        viewModel.gameListItem.observe(viewLifecycleOwner) { gameListItems ->
+            gameListAdapter.submitList(gameListItems)
+        }
+    }
+
+    private fun setupData() {
+        val bigImagePromoGameList =
+            loadGameItemsFromAsset("googleplay_game_action_30.json") { gameItem ->
+                GameItem.BigImagePromoItem(
                     id = gameItem.id.toString(),
                     title = gameItem.title,
                     developer = gameItem.developer,
                     url = gameItem.url,
-                    bannerUrl = gameItem.url,
+                    bannerUrl = gameItem.url
                 )
+            }
+
+        val bigImageFeaturedGameList1 =
+            loadGameItemsFromAsset("googleplay_game_adventure_30.json") { gameItem ->
+                GameItem.BigImageFeaturedItem(
+                    id = gameItem.id.toString(),
+                    title = gameItem.title,
+                    category = gameItem.category,
+                    score = gameItem.score,
+                    url = gameItem.url,
+                    bannerUrl = gameItem.url
+                )
+            }
+
+        val bigImageFeaturedGameList2 =
+            loadGameItemsFromAsset("googleplay_game_casual_30.json") { gameItem ->
+                GameItem.BigImageFeaturedItem(
+                    id = gameItem.id.toString(),
+                    title = gameItem.title,
+                    category = gameItem.category,
+                    score = gameItem.score,
+                    url = gameItem.url,
+                    bannerUrl = gameItem.url
+                )
+            }
+
+        val data = listOf(
+            GameListItem.Promo(
+                id = "1",
+                items = bigImagePromoGameList
+            ),
+            GameListItem.Featured(
+                id = "2",
+                items = bigImageFeaturedGameList1
+            ),
+            GameListItem.Featured(
+                id = "3",
+                items = bigImageFeaturedGameList2
             )
+        )
+
+        viewModel.setGameListItem(data)
+    }
+
+    private fun <T : GameItem> loadGameItemsFromAsset(
+        fileName: String,
+        mapToGameItem: (GameResponse.GameItem) -> T
+    ): MutableList<T> {
+        val jsonReader = requireActivity().assets.open(fileName).reader()
+        val jsonString = jsonReader.readText()
+        jsonReader.close()
+
+        val gameResponse = Gson().fromJson(jsonString, GameResponse::class.java)
+
+        val gameItemList = mutableListOf<T>()
+        println("Content size: ${gameResponse.content.size}")
+
+        gameResponse.content.forEach { gameItem ->
+            gameItemList.add(mapToGameItem(gameItem))
         }
-
-        viewModel.setBigImageGameList(bigImageGameList)
-        gameListAdapter.submitList(bigImageGameList as List<GameItem>?)
-
+        return gameItemList
     }
 }
 
