@@ -9,7 +9,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bigImageGameListView = findViewById<GameListView>(R.id.bigImageGameListView)
+        val bigImageGameListView = findViewById<GameListView>(R.id.bigImagePromoGameListView)
         val smallImageGameListView = findViewById<GameListView>(R.id.smallImageGameListView)
         val listImageGameListView = findViewById<GameListView>(R.id.listImageGameListView)
 

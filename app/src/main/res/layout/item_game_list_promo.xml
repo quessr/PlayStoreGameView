@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <com.quessr.playstore_gameview.GameListView
-        android:id="@+id/bigImageGameListView"
+        android:id="@+id/bigImagePromoGameListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardType="big_promo_image"
