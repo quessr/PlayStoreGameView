@@ -2,6 +2,8 @@ package com.quessr.playstoregameview.ui.gameList.viewholder
 
 import android.util.Log
 import com.quessr.playstore_gameview.model.GameItem
+import com.quessr.playstoregameview.data.mapper.gameItemMapper
+import com.quessr.playstoregameview.data.model.GameListItem
 import com.quessr.playstoregameview.databinding.ItemGameListPromoBinding
 import com.quessr.playstoregameview.ui.gameList.GameListViewModel
 
@@ -9,18 +11,20 @@ class GamePromoViewHolder(
     private val binding: ItemGameListPromoBinding,
     private val viewModel: GameListViewModel
 ) :
-    BaseGameListViewHolder<GameItem.BigImageItem, ItemGameListPromoBinding>(binding) {
-    override fun onBind(model: GameItem.BigImageItem) {
-        super.onBind(model)
+    BaseGameListViewHolder<GameListItem, ItemGameListPromoBinding>(binding) {
+    override fun onBind(model: GameListItem) {
+        val promo = model as? GameListItem.Promo
 
         Log.d("GamePromoViewHolder", "GamePromoViewHolder")
 
+        val bigImagePromoGameList: List<GameItem> = viewModel.gameListItem.value
+            ?.filterIsInstance<GameListItem.Promo>()
+            ?.flatMap { gameItemMapper(it) }
+            ?: promo?.items.orEmpty()
 
-        // GameItem.BigImageItem을 리스트로 변환
-        val bigImageGameList = viewModel.bigImageGameList.value ?: listOf(model)
         // bigImageGameListView에 데이터를 설정
-        binding.bigImageGameListView.submitList(bigImageGameList)
+        binding.bigImagePromoGameListView.submitList(bigImagePromoGameList)
 
-        Log.d("GamePromoViewHolder", "bigImageGameList: $bigImageGameList")
+        Log.d("GamePromoViewHolder", "bigImageGameList: $bigImagePromoGameList")
     }
 }
