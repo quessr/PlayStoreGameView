@@ -3,13 +3,13 @@ package com.quessr.playstoregameview.ui.gameList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.quessr.playstore_gameview.model.GameItem
+import com.quessr.playstoregameview.data.model.GameListItem
 
-class GameListViewModel: ViewModel() {
-    private val _bigImageGameList = MutableLiveData<List<GameItem.BigImageItem>>()
-    val bigImageGameList: LiveData<List<GameItem.BigImageItem>> = _bigImageGameList
+class GameListViewModel : ViewModel() {
+    private val _gameListItem = MutableLiveData<List<GameListItem>>()
+    val gameListItem: LiveData<List<GameListItem>> = _gameListItem
 
-    fun setBigImageGameList(list: List<GameItem.BigImageItem>) {
-        _bigImageGameList.value = list
+    fun setGameListItem(list: List<GameListItem>) {
+        _gameListItem.value = list
     }
 }
