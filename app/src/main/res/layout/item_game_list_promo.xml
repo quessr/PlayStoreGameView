@@ -4,19 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="item game list promo"
-        android:textSize="40sp"/>
-
     <com.quessr.playstore_gameview.GameListView
         android:id="@+id/bigImageGameListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardType="big_image"
-        app:categoryTitleVisibility="visible"
-        app:imageViewSize="big"
+        app:cardType="big_promo_image"
+        app:categoryTitleVisibility="gone"
+        app:imageViewSize="small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
