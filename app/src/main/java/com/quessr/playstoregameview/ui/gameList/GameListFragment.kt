@@ -58,13 +58,25 @@ class GameListFragment : Fragment() {
                 )
             }
 
+        val listChartGameList =
+            loadGameItemsFromAsset("googleplay_game_puzzle_30.json") { gameItem ->
+                GameItem.ListItem(
+                    id = gameItem.id.toString(),
+                    title = gameItem.title,
+                    category = gameItem.category.toString(),
+                    score = "${gameItem.score} ★",
+                    url = gameItem.url
+                )
+
+            }
+
         val bigImageFeaturedGameList1 =
             loadGameItemsFromAsset("googleplay_game_board_30.json") { gameItem ->
                 GameItem.BigImageFeaturedItem(
                     id = gameItem.id.toString(),
                     title = gameItem.title,
                     category = gameItem.category,
-                    score = gameItem.score,
+                    score = "${gameItem.score} ★",
                     url = gameItem.url,
                     bannerUrl = gameItem.url
                 )
@@ -76,7 +88,7 @@ class GameListFragment : Fragment() {
                     id = gameItem.id.toString(),
                     title = gameItem.title,
                     category = gameItem.category,
-                    score = gameItem.score,
+                    score = "${gameItem.score} ★",
                     url = gameItem.url,
                     bannerUrl = gameItem.url
                 )
@@ -86,6 +98,10 @@ class GameListFragment : Fragment() {
             GameListItem.Promo(
                 id = "1",
                 items = bigImagePromoGameList
+            ),
+            GameListItem.ListChart(
+                id = "4",
+                items = listChartGameList
             ),
             GameListItem.Featured(
                 id = "2",
