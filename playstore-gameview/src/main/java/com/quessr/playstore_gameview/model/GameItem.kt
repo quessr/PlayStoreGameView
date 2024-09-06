@@ -32,7 +32,7 @@ sealed class GameItem() {
         override val id: String,
         val title: String,
         val category: String,
-        val score: String,
+        val score: String ?= null,
         val url: String,
     ) : GameItem()
 }
