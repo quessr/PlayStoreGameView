@@ -59,7 +59,7 @@ class GameListFragment : Fragment() {
             }
 
         val listChartGameList =
-            loadGameItemsFromAsset("googleplay_game_puzzle_30.json") { gameItem ->
+            loadGameItemsFromAsset("googleplay_game_well-rated_30.json") { gameItem ->
                 GameItem.ListItem(
                     id = gameItem.id.toString(),
                     title = gameItem.title,
@@ -67,7 +67,16 @@ class GameListFragment : Fragment() {
                     score = "${gameItem.score} ★",
                     url = gameItem.url
                 )
+            }
 
+        val smallGameList =
+            loadGameItemsFromAsset("googleplay_game_sports_30.json") { gameItem ->
+                GameItem.SmallImageItem(
+                    id = gameItem.id.toString(),
+                    title = gameItem.title,
+                    score = "${gameItem.score} ★",
+                    url = gameItem.url
+                )
             }
 
         val bigImageFeaturedGameList1 =
@@ -94,6 +103,18 @@ class GameListFragment : Fragment() {
                 )
             }
 
+        val bigImageFeaturedGameList3 =
+            loadGameItemsFromAsset("googleplay_game_puzzle_30.json") { gameItem ->
+                GameItem.BigImageFeaturedItem(
+                    id = gameItem.id.toString(),
+                    title = gameItem.title,
+                    category = gameItem.category,
+                    score = "${gameItem.score} ★",
+                    url = gameItem.url,
+                    bannerUrl = gameItem.url
+                )
+            }
+
         val data = listOf(
             GameListItem.Promo(
                 id = "1",
@@ -101,7 +122,13 @@ class GameListFragment : Fragment() {
             ),
             GameListItem.ListChart(
                 id = "4",
+                title = "인기 차트",
                 items = listChartGameList
+            ),
+            GameListItem.Small(
+                id = "5",
+                title = "스포츠 게임",
+                items = smallGameList
             ),
             GameListItem.Featured(
                 id = "2",
@@ -112,6 +139,11 @@ class GameListFragment : Fragment() {
                 id = "3",
                 title = "캐주얼 게임",
                 items = bigImageFeaturedGameList2
+            ),
+            GameListItem.Featured(
+                id = "4",
+                title = "퍼즐 게임",
+                items = bigImageFeaturedGameList3
             )
         )
 

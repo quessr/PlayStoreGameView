@@ -10,10 +10,12 @@ import com.quessr.playstoregameview.data.model.GameListItem
 import com.quessr.playstoregameview.databinding.ItemGameListChartBinding
 import com.quessr.playstoregameview.databinding.ItemGameListFeaturedBinding
 import com.quessr.playstoregameview.databinding.ItemGameListPromoBinding
+import com.quessr.playstoregameview.databinding.ItemGameListSmallBinding
 import com.quessr.playstoregameview.ui.gameList.viewholder.BaseGameListViewHolder
 import com.quessr.playstoregameview.ui.gameList.viewholder.GameFeaturedViewHolder
 import com.quessr.playstoregameview.ui.gameList.viewholder.GameListChartViewHolder
 import com.quessr.playstoregameview.ui.gameList.viewholder.GamePromoViewHolder
+import com.quessr.playstoregameview.ui.gameList.viewholder.GameSmallViewHolder
 
 class GameListAdapter(private val viewModel: GameListViewModel) :
     ListAdapter<GameListItem, BaseGameListViewHolder<out GameListItem, out ViewBinding>>(
@@ -39,6 +41,10 @@ class GameListAdapter(private val viewModel: GameListViewModel) :
 
             ITEM_TYPE_LIST_CHART -> GameListChartViewHolder(
                 inflateBinding(ItemGameListChartBinding::inflate), viewModel
+            )
+
+            ITEM_TYPE_SMALL -> GameSmallViewHolder(
+                inflateBinding(ItemGameListSmallBinding::inflate), viewModel
             )
 
             else -> {
@@ -87,6 +93,11 @@ class GameListAdapter(private val viewModel: GameListViewModel) :
                 model = gameListItem,
                 position = position
             )
+
+            is GameListItem.Small -> (holder as? GameSmallViewHolder)?.onBind(
+                model = gameListItem,
+                position = position
+            )
         }
     }
 
@@ -95,12 +106,14 @@ class GameListAdapter(private val viewModel: GameListViewModel) :
             is GameListItem.Promo -> ITEM_TYPE_PROMO
             is GameListItem.Featured -> ITEM_TYPE_FEATURED
             is GameListItem.ListChart -> ITEM_TYPE_LIST_CHART
+            is GameListItem.Small -> ITEM_TYPE_SMALL
         }
 
     companion object {
         private const val ITEM_TYPE_PROMO = 1
         private const val ITEM_TYPE_FEATURED = 2
         private const val ITEM_TYPE_LIST_CHART = 3
+        private const val ITEM_TYPE_SMALL = 4
 
         private val diffUtil = object : DiffUtil.ItemCallback<GameListItem>() {
             override fun areItemsTheSame(oldItem: GameListItem, newItem: GameListItem): Boolean {

@@ -21,4 +21,10 @@ sealed class GameListItem {
         val title: String? = null,
         val items: List<GameItem.BigImageFeaturedItem>
     ) : GameListItem()
+
+    data class Small(
+        override val id: String,
+        val title: String? = null,
+        val items: List<GameItem.SmallImageItem>
+    ) : GameListItem()
 }
