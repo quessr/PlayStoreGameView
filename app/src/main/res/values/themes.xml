@@ -3,7 +3,19 @@
     <style name="Base.Theme.PlayStoreGameView" parent="Theme.AppCompat.Light">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="actionBarStyle">@style/MyCustomActionBar</item>
     </style>
 
     <style name="Theme.PlayStoreGameView" parent="Base.Theme.PlayStoreGameView" />
+
+    <!--  the custom ActionBar style -->
+    <style name="MyCustomActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="titleTextStyle">@style/customActionBarTitleText</item>
+    </style>
+
+    <!-- text style for the ActionBar title -->
+    <style name="customActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">24sp</item> <!-- Set the ActionBar title text size here -->
+        <item name="android:textColor">@color/black_alpha_60</item>
+    </style>
 </resources>

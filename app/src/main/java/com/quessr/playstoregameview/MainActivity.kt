@@ -19,6 +19,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        getSupportActionBar()?.setIcon(R.drawable.ic_google_play_store_logo)
+        getSupportActionBar()?.setDisplayUseLogoEnabled(true);
+        getSupportActionBar()?.setDisplayShowHomeEnabled(true);
+
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, GameListFragment())

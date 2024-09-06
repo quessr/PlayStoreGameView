@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">PlayStoreGameView</string>
+<!--    <string name="app_name">PlayStoreGameView</string>-->
+    <string name="app_name">&#160;Google Play Custom View</string>
 </resources>
