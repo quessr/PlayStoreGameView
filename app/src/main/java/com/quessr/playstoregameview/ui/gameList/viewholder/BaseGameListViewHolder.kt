@@ -10,5 +10,5 @@ abstract class BaseGameListViewHolder<T : GameListItem, VB : ViewBinding>(bindin
     ViewHolder(binding.root) {
 
     protected val context: Context = binding.root.context
-    open fun onBind(model: T) {}
+    open fun onBind(model: T, position: Int) {}
 }

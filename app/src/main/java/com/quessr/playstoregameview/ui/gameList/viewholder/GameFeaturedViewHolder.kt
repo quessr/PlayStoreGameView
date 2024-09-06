@@ -12,17 +12,23 @@ class GameFeaturedViewHolder(
     private val viewModel: GameListViewModel
 ) :
     BaseGameListViewHolder<GameListItem, ItemGameListFeaturedBinding>(binding) {
-    override fun onBind(model: GameListItem) {
+    override fun onBind(model: GameListItem, position: Int) {
+
        val featured = model as? GameListItem.Featured
 
-        val bigImageFeaturedGameList: List<GameItem> = viewModel.gameListItem.value
-            ?.filterIsInstance<GameListItem.Featured>()
-            ?.flatMap { gameItemMapper(it) }
-            ?: featured?.items.orEmpty()
+
+
+//        val bigImageFeaturedGameList: List<GameItem> = viewModel.gameListItem.value
+//            ?.filterIsInstance<GameListItem.Featured>()
+//            ?.flatMap { gameItemMapper(it) }
+//            ?: featured?.items.orEmpty()
+
+        val bigImageFeaturedGameList = viewModel.gameListItem.value?.get(position).let { item ->
+            item as? GameListItem.Featured
+        }
 
         // bigImageFeaturedGameListView에 데이터를 설정
-        binding.bigImageFeaturedGameListView.submitList(bigImageFeaturedGameList)
+        bigImageFeaturedGameList?.items?.let { binding.bigImageFeaturedGameListView.submitList(it) }
 
-        Log.d("bigImageFeaturedGameList", "bigImageFeaturedGameList : $bigImageFeaturedGameList")
     }
 }

@@ -12,7 +12,7 @@ class GamePromoViewHolder(
     private val viewModel: GameListViewModel
 ) :
     BaseGameListViewHolder<GameListItem, ItemGameListPromoBinding>(binding) {
-    override fun onBind(model: GameListItem) {
+    override fun onBind(model: GameListItem, position: Int) {
         val promo = model as? GameListItem.Promo
 
         Log.d("GamePromoViewHolder", "GamePromoViewHolder")

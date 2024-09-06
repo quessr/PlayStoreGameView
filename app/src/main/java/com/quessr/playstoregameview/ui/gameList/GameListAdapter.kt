@@ -46,8 +46,37 @@ class GameListAdapter(private val viewModel: GameListViewModel) :
         position: Int
     ) {
         when (val gameListItem = getItem(position)) {
-            is GameListItem.Promo -> (holder as? GamePromoViewHolder)?.onBind(model = gameListItem)
-            is GameListItem.Featured -> (holder as? GameFeaturedViewHolder)?.onBind(model = gameListItem)
+            is GameListItem.Promo -> (holder as? GamePromoViewHolder)?.onBind(
+                model = gameListItem,
+                position = position
+            )
+//            is GameListItem.Featured -> (holder as? GameFeaturedViewHolder)?.onBind(model = gameListItem)
+            is GameListItem.Featured -> {
+
+                when (position) {
+                    0 -> {
+                        (holder as? GameFeaturedViewHolder)?.onBind(
+                            model = gameListItem,
+                            position = position
+                        )
+                    }
+
+                    1 -> {
+                        (holder as? GameFeaturedViewHolder)?.onBind(
+                            model = gameListItem,
+                            position = position
+                        )
+                    }
+
+                    else -> {
+                        (holder as? GameFeaturedViewHolder)?.onBind(
+                            model = gameListItem,
+                            position = position
+                        )
+                    }
+                }
+            }
+
             is GameListItem.ListChart -> TODO()
         }
     }
