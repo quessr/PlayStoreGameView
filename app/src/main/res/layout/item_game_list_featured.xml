@@ -4,16 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="10dp">
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="30dp">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:text="맞춤 추천"
-        android:textStyle="bold"
         android:textColor="@color/black"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <com.quessr.playstore_gameview.GameListView
         android:id="@+id/bigImageFeaturedGameListView"
