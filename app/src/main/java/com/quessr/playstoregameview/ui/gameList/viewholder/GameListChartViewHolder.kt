@@ -13,6 +13,8 @@ class GameListChartViewHolder(
     override fun onBind(model: GameListItem, position: Int) {
         val listCart = model as? GameListItem.ListChart
 
+        binding.title.text = listCart?.title
+
         val listChartGameList: List<GameItem> = viewModel.gameListItem.value
             ?.filterIsInstance<GameListItem.ListChart>()
             ?.flatMap { gameItemMapper(it) }

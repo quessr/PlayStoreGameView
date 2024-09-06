@@ -12,6 +12,7 @@ sealed class GameListItem {
 
     data class ListChart(
         override val id: String,
+        val title: String? = null,
         val items: List<GameItem.ListItem>
     ) : GameListItem()
 
