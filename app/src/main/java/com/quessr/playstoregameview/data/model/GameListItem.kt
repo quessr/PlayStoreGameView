@@ -17,6 +17,7 @@ sealed class GameListItem {
 
     data class Featured(
         override val id: String,
+        val title: String? = null,
         val items: List<GameItem.BigImageFeaturedItem>
     ) : GameListItem()
 }

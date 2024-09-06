@@ -16,6 +16,7 @@ class GameFeaturedViewHolder(
 
        val featured = model as? GameListItem.Featured
 
+        binding.title.text = featured?.title
 
 
 //        val bigImageFeaturedGameList: List<GameItem> = viewModel.gameListItem.value

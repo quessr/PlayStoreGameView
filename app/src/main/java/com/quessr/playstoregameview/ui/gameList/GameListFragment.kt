@@ -59,7 +59,7 @@ class GameListFragment : Fragment() {
             }
 
         val bigImageFeaturedGameList1 =
-            loadGameItemsFromAsset("googleplay_game_adventure_30.json") { gameItem ->
+            loadGameItemsFromAsset("googleplay_game_board_30.json") { gameItem ->
                 GameItem.BigImageFeaturedItem(
                     id = gameItem.id.toString(),
                     title = gameItem.title,
@@ -89,10 +89,12 @@ class GameListFragment : Fragment() {
             ),
             GameListItem.Featured(
                 id = "2",
+                title = "보드 게임",
                 items = bigImageFeaturedGameList1
             ),
             GameListItem.Featured(
                 id = "3",
+                title = "캐주얼 게임",
                 items = bigImageFeaturedGameList2
             )
         )
