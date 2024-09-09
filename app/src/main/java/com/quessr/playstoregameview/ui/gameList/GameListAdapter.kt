@@ -3,6 +3,7 @@ package com.quessr.playstoregameview.ui.gameList
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.viewbinding.ViewBinding
@@ -17,7 +18,7 @@ import com.quessr.playstoregameview.ui.gameList.viewholder.GameListChartViewHold
 import com.quessr.playstoregameview.ui.gameList.viewholder.GamePromoViewHolder
 import com.quessr.playstoregameview.ui.gameList.viewholder.GameSmallViewHolder
 
-class GameListAdapter(private val viewModel: GameListViewModel) :
+class GameListAdapter(private val getGameList: LiveData<List<GameListItem>>) :
     ListAdapter<GameListItem, BaseGameListViewHolder<out GameListItem, out ViewBinding>>(
         diffUtil
     ) {
@@ -31,24 +32,24 @@ class GameListAdapter(private val viewModel: GameListViewModel) :
         return when (viewType) {
             ITEM_TYPE_PROMO -> GamePromoViewHolder(
                 inflateBinding(ItemGameListPromoBinding::inflate),
-                viewModel
-            )
+            ) { getGameList.value }
 
             ITEM_TYPE_FEATURED -> GameFeaturedViewHolder(
                 inflateBinding(ItemGameListFeaturedBinding::inflate),
-                viewModel
-            )
+            ) { getGameList.value }
 
             ITEM_TYPE_LIST_CHART -> GameListChartViewHolder(
-                inflateBinding(ItemGameListChartBinding::inflate), viewModel
-            )
+                inflateBinding(ItemGameListChartBinding::inflate)
+            ) { getGameList.value }
 
             ITEM_TYPE_SMALL -> GameSmallViewHolder(
-                inflateBinding(ItemGameListSmallBinding::inflate), viewModel
-            )
+                inflateBinding(ItemGameListSmallBinding::inflate)
+            ) { getGameList.value }
 
             else -> {
-                GamePromoViewHolder(inflateBinding(ItemGameListPromoBinding::inflate), viewModel)
+                GamePromoViewHolder(
+                    inflateBinding(ItemGameListPromoBinding::inflate)
+                ) { getGameList.value }
             }
         }
     }

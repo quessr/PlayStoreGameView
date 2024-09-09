@@ -33,7 +33,7 @@ class GameListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.d("GameListFragment", "GameListFragment")
 
-        gameListAdapter = GameListAdapter(viewModel)
+        gameListAdapter = GameListAdapter(getGameList = viewModel.gameListItem)
         binding.rvGameList.adapter = gameListAdapter
 
         initViewModel()

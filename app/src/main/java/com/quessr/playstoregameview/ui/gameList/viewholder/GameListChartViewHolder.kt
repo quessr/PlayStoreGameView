@@ -8,14 +8,14 @@ import com.quessr.playstoregameview.ui.gameList.GameListViewModel
 
 class GameListChartViewHolder(
     private val binding: ItemGameListChartBinding,
-    private val viewModel: GameListViewModel
+    private val getGameList: () -> List<GameListItem>?
 ) : BaseGameListViewHolder<GameListItem, ItemGameListChartBinding>(binding) {
     override fun onBind(model: GameListItem, position: Int) {
         val listCart = model as? GameListItem.ListChart
 
         binding.title.text = listCart?.title
 
-        val listChartGameList: List<GameItem> = viewModel.gameListItem.value
+        val listChartGameList: List<GameItem> = getGameList()
             ?.filterIsInstance<GameListItem.ListChart>()
             ?.flatMap { gameItemMapper(it) }
             ?: listCart?.items.orEmpty()
