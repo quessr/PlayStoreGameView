@@ -91,3 +91,7 @@ PlayStoreGameView는 Android에서 Google Play 게임 탭과 유사한 UI를 구
 ```
 - 옵션: cardType="big_featured_image"으로 설정하여 큰 이미지로 주요 게임 정보를 강조합니다.
 - imageViewSize 옵션을 통해 이미지 크기를 조절할 수 있습니다.# PlayStoreGameView
+
+## 커스텀뷰를 활용한 구글 플레이 게임탭 UI 구현 데모
+
+![PlayStoreGameView](https://github.com/user-attachments/assets/ced75027-5480-4ee4-af09-9576b383bb12)
