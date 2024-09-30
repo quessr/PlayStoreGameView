@@ -20,7 +20,9 @@ PlayStoreGameView는 Android에서 Google Play 게임 탭과 유사한 UI를 구
 ## 🎨 커스텀 뷰 종류
 이 프로젝트에서는 게임 항목을 표현하기 위한 네 가지 cardType 옵션을 제공합니다. 각 타입은 다양한 게임 리스트를 시각화할 수 있는 커스텀 뷰입니다.
 
-**카드 타입은 네 가지가 있으며, 각 타입은 다양한 게임 리스트를 표현하는 데 사용됩니다:**
+- 각 게임 항목은 가로 스크롤이 가능한 RecyclerView로 구현되어 있어 사용자 경험을 향상시킵니다.
+
+- 카드 타입은 네 가지가 있으며, 각 타입은 다양한 게임 리스트를 표현하는 데 사용됩니다:
 1. big_promo_image: 큰 프로모션 이미지를 표시합니다.
 2. list: 리스트 형식으로 게임 항목을 표시합니다.
 3. small_image: 작은 이미지를 사용하여 간략한 게임 정보를 표시합니다.
@@ -29,6 +31,9 @@ PlayStoreGameView는 Android에서 Google Play 게임 탭과 유사한 UI를 구
 ## 🛠 커스텀 뷰 사용 예시
 
 **1. BigImagePromoItem과 같은 큰 이미지 아이템을 표시할 때:**
+
+<img src="https://github.com/user-attachments/assets/3b3805a8-ce21-47d8-921e-b986389cd14f" alt="BigImagePromoItem" width="300"/>
+
 ```
 <com.quessr.playstore_gameview.GameListView
     android:id="@+id/bigImagePromoGameListView"
@@ -45,6 +50,9 @@ PlayStoreGameView는 Android에서 Google Play 게임 탭과 유사한 UI를 구
 - imageViewSize 옵션을 사용하여 이미지의 크기를 조절할 수 있습니다.
 
 **2. 리스트 형식의 게임 항목을 표시할 때:**
+
+<img src="https://github.com/user-attachments/assets/4308a229-e012-44a1-b192-d5fd4fce61a4" alt="ListItem" width="300"/>
+
 ```
 <com.quessr.playstore_gameview.GameListView
     android:id="@+id/listChartGameListView"
@@ -62,6 +70,9 @@ PlayStoreGameView는 Android에서 Google Play 게임 탭과 유사한 UI를 구
 - spanCount 옵션을 통해 가로의 줄 수를 조정할 수 있습니다.
 
 **3. SmallImageItem을 사용하여 작은 이미지를 활용한 게임 항목을 표시할 때:**
+
+<img src="https://github.com/user-attachments/assets/b4a1a03b-d3cd-4cc6-9bb1-deb81b1ae966" alt="SmallImageItem" width="160"/>
+
 ```
 <com.quessr.playstore_gameview.GameListView
     android:id="@+id/smallImageGameListView"
@@ -77,6 +88,9 @@ PlayStoreGameView는 Android에서 Google Play 게임 탭과 유사한 UI를 구
 - 옵션: cardType="small_image"로 설정하여 작은 이미지를 사용한 게임 항목을 간략하게 표현할 수 있습니다.
 
 **4. BigImageFeaturedItem을 사용하여 큰 이미지를 강조할 때:**
+
+<img src="https://github.com/user-attachments/assets/d43e08a5-c8ba-45be-a96f-cdce173e8e12" alt="BigImageFeaturedItem" width="300"/>
+
 ```
 <com.quessr.playstore_gameview.GameListView
     android:id="@+id/bigImageFeaturedGameListView"
