@@ -94,4 +94,4 @@ PlayStoreGameView는 Android에서 Google Play 게임 탭과 유사한 UI를 구
 
 ## 커스텀뷰를 활용한 구글 플레이 게임탭 UI 구현 데모
 
-![PlayStoreGameView](https://github.com/user-attachments/assets/ced75027-5480-4ee4-af09-9576b383bb12)
+<img src="https://github.com/user-attachments/assets/ced75027-5480-4ee4-af09-9576b383bb12" alt="PlayStoreGameView" width="260" />
